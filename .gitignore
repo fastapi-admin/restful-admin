@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Vue template
+# gitignore template for Vue.js projects
+#
+# Recommended template: Node.gitignore
+
+# TODO: where does this rule come from?
+docs/_book
+
+# TODO: where does this rule come from?
+test/
+
+.env
+.idea
+node_modules
+dist
