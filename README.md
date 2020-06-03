@@ -39,9 +39,9 @@ Data in database will restore every day.
 
 ```
 
-## Backend API
+## Rest API
 
-See `https://github.com/fastapi-admin/fastapi-admin`.
+See [fastapi-admin](https://github.com/fastapi-admin/fastapi-admin) for reference.
 
 ## Deployment
 
