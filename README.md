@@ -1,4 +1,4 @@
-# vue-front
+# fastapi-admin-front
 
 ## Introduction
 
