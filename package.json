@@ -7,8 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
-    "mode": "echo $2",
-    "test-api": "node ./api"
+    "mode": "echo $2"
   },
   "dependencies": {
     "@alfsnd/vue-bootstrap-select": "^0.4.4",
