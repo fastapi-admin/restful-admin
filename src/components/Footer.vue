@@ -10,20 +10,17 @@
   </div>
 </template>
 <script>
-  import {mapState} from "vuex";
+import {mapState} from "vuex";
 
-  export default {
-    computed: {
-      ...mapState(["site"])
-    }
-  };
+export default {
+  computed: {
+    ...mapState(["site"])
+  }
+};
 </script>
 <style lang="scss">
-  .app-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-  }
+.app-footer {
+  text-align: center;
+  width: 100%;
+}
 </style>
