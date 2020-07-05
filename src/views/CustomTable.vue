@@ -83,6 +83,16 @@
         :sort-desc.sync="sortDesc"
         :sort-direction="sortDirection"
       >
+        <template v-slot:cell(selected)="{ rowSelected }">
+          <template v-if="rowSelected">
+            <span aria-hidden="true">&check;</span>
+            <span class="sr-only">Selected</span>
+          </template>
+          <template v-else>
+            <span aria-hidden="true">&nbsp;</span>
+            <span class="sr-only">Not selected</span>
+          </template>
+        </template>
         <template v-slot:cell()="data">
           <template v-if="['datetime', 'date'].includes(data.field.type)">
             {{$d(new Date(data.value), 'long')}}
@@ -189,7 +199,7 @@
         loaded: false,
         table: {},
         modes: ['multi', 'single', 'range'],
-        selectModel: 'range',
+        selectModel: 'multi',
         total: 0,
         pageLimit: 10,
         currentPage: 1,

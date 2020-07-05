@@ -4,7 +4,7 @@
     <footer v-else>
       <span class="ml-auto">
         GitHub
-        <a href="https://github.com/long2ice/fastapi-admin">FASTAPI-ADMIN</a> - FastAPI Admin Dashboard
+        <a target="_blank" href="https://github.com/long2ice/fastapi-admin">FASTAPI-ADMIN</a> - FastAPI Admin Dashboard
       </span>
     </footer>
   </div>
