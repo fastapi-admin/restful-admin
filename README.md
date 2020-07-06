@@ -1,8 +1,8 @@
-# fastapi-admin-front
+# restful-admin
 
 ## Introduction
 
-This is front-end project for [fastapi-admin](https://github.com/long2ice/fastapi-admi) and forked from [rest-admin](https://github.com/wxs77577/rest-admin).
+This is front-end project for [fastapi-admin](https://github.com/long2ice/fastapi-admin) and forked from [rest-admin](https://github.com/wxs77577/rest-admin).
 
 ## Live Demo
 
@@ -15,14 +15,14 @@ Data in database will restore every day.
 
 ## Screenshots
 
-![login](https://github.com/fastapi-admin/vue-front/raw/master/screenshots/login.png)
-![list](https://github.com/fastapi-admin/vue-front/raw/master/screenshots/list.png)
-![view](https://github.com/fastapi-admin/vue-front/raw/master/screenshots/view.png)
-![create](https://github.com/fastapi-admin/vue-front/raw/master/screenshots/create.png)
+![login](https://github.com/long2ice/restful-admin/raw/master/screenshots/login.png)
+![list](https://github.com/long2ice/restful-admin/raw/master/screenshots/list.png)
+![view](https://github.com/long2ice/restful-admin/raw/master/screenshots/view.png)
+![create](https://github.com/long2ice/restful-admin/raw/master/screenshots/create.png)
 
 ## Run local
 
-1. `git clone https://github.com/fastapi-admin/vue-front.git`.
+1. `git clone https://github.com/long2ice/restful-admin.git`.
 2. `cp .env.example .env` and update.
 3. `yarn && yarn serve`.
 
@@ -54,4 +54,4 @@ See [fastapi-admin](https://github.com/long2ice/fastapi-admin) for reference.
 
 ## License
 
-This project is licensed under the [MIT](https://github.com/fastapi-admin/vue-front/blob/master/LICENSE) License.
+This project is licensed under the [MIT](https://github.com/long2ice/restful-admin/blob/master/LICENSE) License.
