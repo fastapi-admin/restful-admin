@@ -41,7 +41,7 @@ Data in database will restore every day.
 
 ## Rest API
 
-See [fastapi-admin](https://github.com/fastapi-admin/fastapi-admin) for reference.
+See [fastapi-admin](https://github.com/long2ice/fastapi-admin) for reference.
 
 ## Deployment
 
