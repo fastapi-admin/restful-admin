@@ -25,9 +25,6 @@ axios.interceptors.response.use(response => {
     case 401:
       store.dispatch(types.GO_LOGIN)
       break
-    case 404:
-      Vue.prototype.$snotify.error(String(statusText))
-      break;
     default:
       let msg = _.get(data, 'msg')
       if (msg) {
