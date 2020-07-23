@@ -17,14 +17,19 @@
     "choose": "选择",
     "login": "登录",
     "edit": "编辑",
+    "cancel": "取消",
     "select_all": "选择全部",
     "clear_selected": "清除选择"
   },
   "texts": {
+    "update_password": "修改密码"
   },
   "fields": {
     "username": "用户名",
-    "password": "密码"
+    "password": "密码",
+    "old_password": "旧密码",
+    "new_password": "新密码",
+    "confirm_password": "确认密码"
   },
   "messages": {
     "paginate": "共{total}条数据",

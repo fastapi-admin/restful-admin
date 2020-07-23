@@ -12,6 +12,57 @@
         <template v-if="auth.user">
           <b-badge class="text-uppercase mr-1" v-if="auth.user.badge">{{auth.user.badge}}</b-badge>
           <span>{{auth.user.username}}</span>
+          <i class="reset-pass fa fa-key fa-fw" v-b-modal.modal-prevent-closing></i>
+          <div>
+            <b-modal
+              id="modal-prevent-closing"
+              ref="modal"
+              :title="$t('texts.update_password')"
+              @ok="handleOk"
+            >
+              <form ref="form" @submit.stop.prevent="handleSubmit">
+                <b-form-group
+                  :label="$t('fields.old_password')"
+                  label-for="old-password-input"
+                  :state="old_password_state"
+                >
+                  <b-form-input
+                    id="old-password-input"
+                    v-model="form.old_password"
+                    required
+                    type="password"
+                    :state="old_password_state"
+                  ></b-form-input>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('fields.new_password')"
+                  label-for="new-password-input"
+                  :state="new_password_state"
+                >
+                  <b-form-input
+                    id="new-password-input"
+                    v-model="form.new_password"
+                    type="password"
+                    :state="new_password_state"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+                <b-form-group
+                  :label="$t('fields.confirm_password')"
+                  label-for="confirm-password-input"
+                  :state="confirm_password_state"
+                >
+                  <b-form-input
+                    id="confirm-password-input"
+                    v-model="form.confirm_password"
+                    type="password"
+                    :state="confirm_password_state"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+              </form>
+            </b-modal>
+          </div>
         </template>
       </div>
       <div v-else></div>
@@ -66,7 +117,16 @@
       }
     },
     data() {
-      return {};
+      return {
+        form: {
+          confirm_password: null,
+          old_password: null,
+          new_password: null,
+        },
+        confirm_password_state: null,
+        old_password_state: null,
+        new_password_state: null,
+      };
     },
 
     computed: {
@@ -93,7 +153,44 @@
     methods: {
       toggle(item) {
         this.$set(item, "open", !item.open);
-      }
+      },
+      handleSubmit() {
+        // Exit when the form isn't valid
+        if (!this.checkFormValidity()) {
+          return
+        }
+        this.$http.put('password', this.form)
+          .then(({data}) => {
+            this.$snotify.success(this.$t("messages.succeed"));
+            this.$emit("success", data);
+          })
+          .catch(({data, status}) => {
+            if (status == 422) {
+              this.errors = data.message;
+            }
+          });
+        // Hide the modal manually
+        this.$nextTick(() => {
+          this.$bvModal.hide('modal-prevent-closing')
+        })
+      },
+      checkFormValidity() {
+        const valid = this.$refs.form.checkValidity()
+        this.old_password_state = valid
+        this.new_password_state = valid
+        this.confirm_password_state = valid
+        if (this.form.new_password !== this.form.confirm_password) {
+          this.confirm_password_state = false
+          return false
+        }
+        return valid
+      },
+      handleOk(bvModalEvt) {
+        // Prevent modal from closing
+        bvModalEvt.preventDefault()
+        // Trigger submit handler
+        this.handleSubmit()
+      },
     }
   };
 </script>
@@ -112,5 +209,10 @@
 
   .sidebar-nav .nav-item:hover {
     background: #f6f6f6;
+  }
+
+  .reset-pass {
+    margin-left: 10px;
+    cursor: pointer;
   }
 </style>
