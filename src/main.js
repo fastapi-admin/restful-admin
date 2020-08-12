@@ -9,7 +9,9 @@ import store, {types} from './store'
 import './http'
 import i18n from './i18n'
 import inflection from 'inflection'
+import VueAppend from 'vue-append'
 
+Vue.use(VueAppend)
 Vue.prototype.$inflection = inflection
 
 import {sync} from 'vuex-router-sync'

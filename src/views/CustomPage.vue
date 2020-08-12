@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data.html" v-html="data.html"></div>
+  <div v-if="data.html" v-append="data.html"></div>
 </template>
 
 <script>
@@ -7,7 +7,6 @@ export default {
   data() {
     return {
       data: {},
-      html: ""
     };
   },
   computed: {
@@ -24,6 +23,11 @@ export default {
   },
   created() {
     this.fetch();
+  },
+  watch: {
+    uri(val) {
+      this.fetch();
+    }
   }
 };
 </script>
