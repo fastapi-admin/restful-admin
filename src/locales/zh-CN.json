@@ -19,7 +19,8 @@
     "edit": "编辑",
     "cancel": "取消",
     "select_all": "选择全部",
-    "clear_selected": "清除选择"
+    "clear_selected": "清除选择",
+    "columns": "展示列"
   },
   "texts": {
     "update_password": "修改密码"

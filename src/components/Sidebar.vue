@@ -72,34 +72,44 @@
     </div>
     <div slot="header"></div>
     <b-nav pills class="sidebar-nav" vertical>
-      <template v-for="(item, index) in site.menus">
-        <template v-if="!(item.title && site.menus[index+1].title)">
-          <b-nav-text v-if="item.title" :key="index">
+      <template v-for="(menu,index) in site.menus">
+
+        <template v-if="menu.children">
+          <b-nav-text :key="index">
             <small class="text-muted">
-              <b>{{ item.name }}</b>
+              <b>{{ menu.name }}</b>
             </small>
           </b-nav-text>
-          <b-nav vertical v-else-if="item.children" :key="index">
-            <b-nav-item :to="child.url" :key="child.name" v-for="child in item.children">
+          <template v-for="child in menu.children">
+            <b-nav-item :active="$route.path === child.url" target="_blank" :href="child.url" v-if="child.external"
+                        :key="child.name">
+              <i :class="{'mr-2': !collapsed, [child.icon]: true}"></i>
+              <span v-show="!collapsed">{{ child.name }}</span>
+              <b-badge v-bind="child.badge" v-if="child.badge">{{ child.badge.text }}</b-badge>
+            </b-nav-item>
+
+            <b-nav-item v-else :active="$route.path === child.url" :to="child.url" :key="child.name">
               <i class="mr-1" :class="child.icon"></i>
               <span>{{ child.name }}</span>
               <b-badge v-bind="child.badge" v-if="child.badge">{{ child.badge.text }}</b-badge>
             </b-nav-item>
-          </b-nav>
-          <b-nav-item :active="$route.path === item.url" target="_blank" :href="item.url" v-else-if="item.external"
-                      :key="index">
-            <i :class="{'mr-2': !collapsed, [item.icon]: true}"></i>
-            <span v-show="!collapsed">{{ item.name }}</span>
-            <b-badge v-bind="item.badge" v-if="item.badge">{{ item.badge.text }}</b-badge>
+          </template>
+        </template>
+        <template v-else>
+          <b-nav-item :active="$route.path === menu.url" target="_blank" :href="menu.url" v-if="menu.external"
+                      :key="menu.name">
+            <i :class="{'mr-2': !collapsed, [menu.icon]: true}"></i>
+            <span v-show="!collapsed">{{ menu.name }}</span>
+            <b-badge v-bind="menu.badge" v-if="menu.badge">{{ menu.badge.text }}</b-badge>
           </b-nav-item>
-          <b-nav-item :active="$route.path === item.url" :to="item.url" v-else :key="index">
-            <i :class="{'mr-2': !collapsed, [item.icon]: true}"></i>
-            <span v-show="!collapsed">{{ item.name }}</span>
-            <b-badge v-bind="item.badge" v-if="item.badge">{{ item.badge.text }}</b-badge>
+
+          <b-nav-item v-else :active="$route.path === menu.url" :to="menu.url" :key="menu.name">
+            <i class="mr-1" :class="menu.icon"></i>
+            <span>{{ menu.name }}</span>
+            <b-badge v-bind="menu.badge" v-if="menu.badge">{{ menu.badge.text }}</b-badge>
           </b-nav-item>
         </template>
       </template>
-      <slot></slot>
     </b-nav>
     <p></p>
   </div>
