@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-hidden">
     <b-row>
       <b-col :cols="6" md="3" lg="2" xl="2"
              :class="{[`fold-${foldLevel}`]: true}">
