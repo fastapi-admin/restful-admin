@@ -20,7 +20,6 @@ export default {
 </script>
 <style lang="scss">
 .app-footer {
-  margin-top: 50px;
   height: 50px;
   z-index: 9999;
   clear: both;

@@ -122,7 +122,7 @@
         </template>
         <template v-slot:cell(_actions)="row">
           <b-btn
-            v-if="actions.edit !== false"
+            v-if="actions.view !== false"
             variant="success"
             size="sm"
             :to="`${uri}/${row.item[pk]}`"
