@@ -26,7 +26,7 @@ axios.interceptors.response.use(response => {
       store.dispatch(types.GO_LOGIN)
       break
     default:
-      let msg = _.get(data, 'message')
+      let msg = _.get(data, 'msg')
       if (msg) {
         Vue.prototype.$snotify.error(String(msg))
       }
