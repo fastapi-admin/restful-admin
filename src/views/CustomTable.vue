@@ -105,8 +105,11 @@
           </template>
         </template>
         <template v-slot:cell()="data">
-          <template v-if="['datetime', 'date'].includes(data.field.type)">
+          <template v-if="['datetime'].includes(data.field.type)">
             {{ $d(new Date(data.value), 'long') }}
+          </template>
+          <template v-else-if="['date'].includes(data.field.type)">
+            {{ $d(new Date(data.value), 'short') }}
           </template>
           <template v-else-if="['image'].includes(data.field.type)">
             <b-img width="50px" class="type-image" :src="data.value" fluid/>
