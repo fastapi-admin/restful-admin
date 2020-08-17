@@ -63,7 +63,21 @@
             </b-button>
           </div>
         </b-form-builder>
-
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <b-pagination
+            :limit="pageLimit"
+            v-model="currentPage"
+            :total-rows="total"
+            :per-page="perPage"
+          ></b-pagination>
+        </div>
+        <div class="col-md-4 form-inline justify-content-end">
+          <b-select v-model="perPage" :options="pages" class="mx-2">
+          </b-select>
+          <span>{{ $t('messages.paginate', {total: total}) }}</span>
+        </div>
       </div>
       <b-table
         class="data-table"
@@ -192,7 +206,7 @@ export default {
       selected_pk_list: [],
       bulkActions: {},
       selectBulkAction: null,
-      pages: [10, 50, 100],
+      pages: [10, 20, 50, 100],
       columns_select: [],
       column_options: []
     };
