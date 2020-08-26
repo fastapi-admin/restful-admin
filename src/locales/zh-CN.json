@@ -47,7 +47,8 @@
     "image_size": "尺寸要求：{width}x{height}",
     "confirm_bulk_action": "确定执行批量操作？",
     "no_options_text": "暂无可选项",
-    "bulk_success": "批量操作成功！"
+    "bulk_success": "批量操作成功！",
+    "server_error": "服务器错误"
   },
   "errors": {
     "too_large": "请上传小于{limit}KB的文件",

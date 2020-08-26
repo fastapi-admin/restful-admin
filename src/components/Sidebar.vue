@@ -17,6 +17,8 @@
             <b-modal
               id="modal-prevent-closing"
               ref="modal"
+              :ok-title="$t('actions.submit')"
+              :cancel-title="$t('actions.cancel')"
               :title="$t('texts.update_password')"
               @ok="handleOk"
             >
@@ -87,10 +89,9 @@
               <span v-show="!collapsed">{{ child.name }}</span>
               <b-badge v-bind="child.badge" v-if="child.badge">{{ child.badge.text }}</b-badge>
             </b-nav-item>
-
             <b-nav-item v-else :active="$route.path === child.url" :to="child.url" :key="child.name">
-              <i class="mr-1" :class="child.icon"></i>
-              <span>{{ child.name }}</span>
+              <i :class="{'mr-1': !collapsed, [child.icon]: true}"></i>
+              <span v-show="!collapsed">{{ child.name }}</span>
               <b-badge v-bind="child.badge" v-if="child.badge">{{ child.badge.text }}</b-badge>
             </b-nav-item>
           </template>
@@ -104,8 +105,8 @@
           </b-nav-item>
 
           <b-nav-item v-else :active="$route.path === menu.url" :to="menu.url" :key="menu.name">
-            <i class="mr-1" :class="menu.icon"></i>
-            <span>{{ menu.name }}</span>
+            <i :class="{'mr-1': !collapsed, [menu.icon]: true}"></i>
+            <span v-show="!collapsed">{{ menu.name }}</span>
             <b-badge v-bind="menu.badge" v-if="menu.badge">{{ menu.badge.text }}</b-badge>
           </b-nav-item>
         </template>

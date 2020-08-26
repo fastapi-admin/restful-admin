@@ -49,7 +49,7 @@
           inline
           v-if="_.keys(table.searchFields).length > 0"
           :submit-text="$t('actions.search')"
-          :fields="table.searchFields"
+          :fields="searchFields"
           v-model="table.searchModel"
         >
 
@@ -211,7 +211,8 @@ export default {
       selectBulkAction: null,
       pages: [10, 20, 50, 100],
       columns_select: [],
-      column_options: []
+      column_options: [],
+      searchFields: {}
     };
   },
   watch: {
@@ -375,7 +376,6 @@ export default {
       this.init = false;
       this.columns_select = this.get_select_change();
       let columns_selected = this.columns_select.length !== 0;
-      console.log(columns_selected)
       this.column_options = [];
       this.$http.get(this.uri + "/grid").then(res => {
         _.mapValues(res.data.bulk_actions, action => {
@@ -396,6 +396,7 @@ export default {
           }
         })
         this.table = res.data;
+        this.searchFields = this.table.searchFields;
 
         if (_.get(this.table, "fields._actions") !== false) {
           _.set(

@@ -471,14 +471,18 @@ export default {
     const isArray =
       this.field.multiple ||
       this.field.is_array ||
-      this.field.type == "array" ||
-      this.field.is_table;
+      this.field.type === "array"
     return {
       currentLanguage: this.field.currentLanguage || "en",
       options: this.field.options || [],
       initSelectedValue: isArray && !this.value ? [] : this.value,
       selectedValue: isArray && !this.value ? [] : this.value,
     };
+  },
+  watch: {
+    field(val) {
+      this.options = val.options;
+    }
   },
   methods: {
     addRow() {
