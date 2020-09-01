@@ -62,6 +62,16 @@
             >{{ $t('actions.search_and_export') }}
             </b-button>
           </div>
+          <div slot="extra-buttons" class="ml-1">
+            <input type="file" ref="file" style="display: none">
+            <b-button
+              type="button"
+              variant="secondary"
+              v-if="this.import"
+              @click="$refs.file.click()"
+            >{{ $t('actions.import') }}
+            </b-button>
+          </div>
         </b-form-builder>
       </div>
       <div class="row align-items-center">
@@ -245,6 +255,9 @@ export default {
     export() {
       return _.get(this.table, "export");
     },
+    import() {
+      return _.get(this.table, "import_");
+    },
     populate() {
       return _(this.table.fields || {})
         .map("ref")
@@ -314,6 +327,9 @@ export default {
         const blob = new Blob([res.data]);
         saveAs(blob, `${this.resource}.xlsx`)
       })
+    },
+    select_file(data) {
+      console.log(data)
     },
     applyRouteQuery() {
       const {sort = {}, page = 1, where = {}} = JSON.parse(
