@@ -63,12 +63,15 @@
             </b-button>
           </div>
           <div slot="extra-buttons" class="ml-1">
-            <input type="file" ref="file" style="display: none">
+            <b-form-file
+              accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+              @input="select_file" v-show="false" ref="file">
+            </b-form-file>
             <b-button
               type="button"
               variant="secondary"
               v-if="this.import"
-              @click="$refs.file.click()"
+              @click="$refs.file.$el.childNodes[0].click()"
             >{{ $t('actions.import') }}
             </b-button>
           </div>
@@ -197,6 +200,7 @@
 import {mapGetters, mapState} from "vuex";
 import _ from "lodash";
 import {saveAs} from 'file-saver';
+import XLSX from "xlsx";
 
 export default {
   components: {},
@@ -328,8 +332,21 @@ export default {
         saveAs(blob, `${this.resource}.xlsx`)
       })
     },
-    select_file(data) {
-      console.log(data)
+    select_file(file) {
+      let reader = new FileReader();
+      let that = this;
+      reader.onload = function (e) {
+        let data = new Uint8Array(e.target.result);
+        let workbook = XLSX.read(data, {type: 'array'});
+        let sheet_name = workbook.SheetNames[0];
+        let sheet = workbook.Sheets[sheet_name];
+        let json_data = XLSX.utils.sheet_to_json(sheet);
+        that.$http.post(that.uri + '/import', json_data).then(res => {
+          that.$refs.table.refresh();
+          that.$snotify.success(this.$t("messages.import", res.data));
+        })
+      };
+      reader.readAsArrayBuffer(file);
     },
     applyRouteQuery() {
       const {sort = {}, page = 1, where = {}} = JSON.parse(
