@@ -337,10 +337,14 @@ export default {
       let that = this;
       reader.onload = function (e) {
         let data = new Uint8Array(e.target.result);
-        let workbook = XLSX.read(data, {type: 'array'});
+        let workbook = XLSX.read(data, {type: 'array', cellDates: true});
         let sheet_name = workbook.SheetNames[0];
         let sheet = workbook.Sheets[sheet_name];
-        let json_data = XLSX.utils.sheet_to_json(sheet);
+        const opts = {
+          /** Default value for null/undefined values */
+          defval: ''//给defval赋值为空的字符串
+        }
+        let json_data = XLSX.utils.sheet_to_json(sheet,opts);
         that.$http.post(that.uri + '/import', json_data).then(res => {
           that.$refs.table.refresh();
           that.$snotify.success(this.$t("messages.import", res.data));
