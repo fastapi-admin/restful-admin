@@ -370,7 +370,7 @@ export default {
     remove(id) {
       if (window.confirm("是否删除?")) {
         this.$http.delete(`${this.uri}/${id}`).then(res => {
-          this.$snotify.success("删除成功");
+          this.$snotify.success(this.$t("messages.deleted"));
           this.$refs.table.refresh();
         });
       }
