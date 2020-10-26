@@ -21,7 +21,7 @@ jobs:
         env:
           PRODUCTION_BASE_URL: /
           BASE_URL: /
-          VUE_APP_API_URL: https://api-fastapi-admin.long2ice.cn/admin/
+          VUE_APP_API_URL: https://fastapi-admin.long2ice.cn/admin/
         run: |
           yarn
           yarn build
