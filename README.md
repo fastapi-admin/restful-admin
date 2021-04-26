@@ -2,7 +2,10 @@
 
 ## Introduction
 
-This is front-end project for [fastapi-admin](https://github.com/long2ice/fastapi-admin) and forked from [rest-admin](https://github.com/wxs77577/rest-admin).
+This is front-end project for [fastapi-admin](https://github.com/long2ice/fastapi-admin).
+Current project forked from [restful-admin](https://github.com/fastapi-admin/restful-admin.git). Only changes have made:
+1. renamed:    .env.example -> .env
+2. Adjusted README.md
 
 ## Live Demo
 
@@ -22,9 +25,8 @@ Data in database will restore every day.
 
 ## Run local
 
-1. `git clone https://github.com/long2ice/restful-admin.git`.
-2. `cp .env.example .env` and update.
-3. `yarn && yarn serve`.
+1. `git clone https://github.com/fastapi-admin/restful-admin.git`.
+2.  `yarn && yarn serve`.
 
 ```log
  DONE  Compiled successfully in 5051ms                                                                                                                                          5:05:48 PM
