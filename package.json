@@ -23,7 +23,7 @@
     "font-awesome": "^4.7.0",
     "inflection": "^1.12.0",
     "jsoneditor": "^8.6.4",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "pikaz-excel-js": "^0.2.14",
     "simple-line-icons": "^2.4.1",
     "vue": "^2.6.11",
